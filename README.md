@@ -51,7 +51,7 @@ Selamat datang! Dokumen ini berisi panduan lengkap untuk menjalankan Billing Sys
 1. Buka PowerShell dengan Administrator privileges
 2. Navigasi ke folder project:
    ```powershell
-   cd d:\billingtus
+   cdc
    ```
 3. Jalankan script:
    ```powershell
