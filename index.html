@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Billing System - Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tabler CSS -->
+    <link href="/assets/dist/css/tabler.css" rel="stylesheet">
+    <link href="/assets/custom.css" rel="stylesheet">
+
+    <!-- Tabler Extensions CSS -->
+    <link href="/assets/dist/css/tabler-flags.min.css" rel="stylesheet">
+    <link href="/assets/dist/css/tabler-socials.min.css" rel="stylesheet">
+    <link href="/assets/dist/css/tabler-payments.min.css" rel="stylesheet">
+    <link href="/assets/dist/css/tabler-vendors.min.css" rel="stylesheet">
+    <link href="/assets/dist/css/tabler-marketing.min.css" rel="stylesheet">
+
+    <!-- Demo CSS -->
+    <link href="/assets/preview/css/demo.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.bootstrap5.css">
+
+    <!-- Tabler Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="/assets/leaflet/leaflet.css">
+
+    <!-- Leaflet Draw CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-draw@1.0.4/dist/leaflet.draw.css">
+
+    <!-- Tom Select CSS -->
+    <link href="/assets/libs/tom-select/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
+
+    <!-- Leaflet Routing Machine CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css">
+
+    <!-- Leaflet GeoSearch CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.0.0/dist/geosearch.css">
+
+    <!-- Custom Fonts -->
+    <style>
+        @import url("https://rsms.me/inter/inter.css");
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .pulsing-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body class="layout-fluid">
+    <!-- BEGIN GLOBAL THEME SCRIPT -->
+    <script src="/assets/dist/js/tabler-theme.min.js"></script>
+    <!-- END GLOBAL THEME SCRIPT -->
+
+    <!-- Redirect to the original admin dashboard so the menu & assets match the provided files -->
+    <script>
+        // Use location replace so back button won't return to this redirect page
+        if (location.pathname === '/' || location.pathname.endsWith('index.html')) {
+            location.replace('/admin/dashboard.html');
+        }
+    </script>
+
+    <div class="page">
+
+        <!-- BEGIN PAGE HEADER MOBILE -->
+        <header class="navbar navbar-expand-lg sticky-top">
+            <div class="container-fluid mobile">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-mobile"
+                    aria-controls="sidebar-mobile" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-brand navbar-brand-autodark pe-0 pe-md-3">
+                    <div class="d-lg-none">
+                        <h4 class="mb-0">Billing System</h4>
+                    </div>
+                </div>
+
+                <div class="navbar-nav flex-row order-md-last">
+                    <div class="d-none d-md-flex">
+                        <div class="nav-item">
+                            <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" data-bs-toggle="tooltip"
+                                data-bs-placement="bottom" aria-label="Enable dark mode">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="icon">
+                                    <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a href="?theme=light" class="nav-link px-0 hide-theme-light" data-bs-toggle="tooltip"
+                                data-bs-placement="bottom" aria-label="Enable light mode">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="icon">
+                                    <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                                    <path
+                                        d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link d-flex lh-1 p-0 px-2" data-bs-toggle="dropdown">
+                            <span class="avatar avatar-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="icon">
+                                    <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                                    <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                                </svg>
+                            </span>
+                            <div class="d-none d-xl-block ps-2">
+                                <div>Admin User</div>
+                                <div class="mt-1 small text-secondary">Owner</div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                            <a href="#" class="dropdown-item">Profil</a>
+                            <a href="#" class="dropdown-item">Logout</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collapse navbar-collapse" id="sidebar-mobile">
+                    <ul class="navbar-nav pt-lg-3 d-lg-none">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#customers">Pelanggan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#invoices">Tagihan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#settings">Pengaturan</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!-- END PAGE HEADER -->
+
+        <!-- BEGIN SIDEBAR -->
+        <aside class="navbar navbar-vertical navbar-expand-lg d-none d-lg-flex" style="min-height: 100vh;">
+            <div class="container-fluid d-flex flex-column h-100">
+                <div class="navbar-brand navbar-brand-autodark d-none d-lg-block pt-4 px-4">
+                    <a href="#" class="text-teal d-flex align-items-center">
+                        <h5 class="mb-0">📊 Billing System</h5>
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="sidebar-menu">
+                    <ul class="navbar-nav pt-lg-3 d-flex flex-column h-100">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#dashboard" data-section="dashboard">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                        <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#customers" data-section="customers">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                        <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">Pelanggan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#invoices" data-section="invoices">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                        <path
+                                            d="M4 3m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                                        <path
+                                            d="M8 7m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" />
+                                        <path d="M8 14l0 .01" />
+                                        <path d="M12 14l0 .01" />
+                                        <path d="M16 14l0 .01" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">Tagihan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item flex-fill"></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#settings" data-section="settings">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                        <path
+                                            d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">Pengaturan</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <!-- END SIDEBAR -->
+
+        <!-- BEGIN PAGE WRAPPER -->
+        <div class="page-wrapper">
+            <div class="page-body">
+                <div class="container-xl">
+
+                    <!-- Dashboard Section -->
+                    <div id="dashboard" class="page-section">
+                        <div class="row row-deck row-cards">
+                            <div class="col-12">
+                                <h1 class="page-title mb-4">Dashboard</h1>
+                            </div>
+
+                            <!-- Statistics Cards -->
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="w-100">
+                                                <div class="subheader">Total Pelanggan</div>
+                                                <div class="h2 my-1 text-primary">0</div>
+                                                <div class="d-flex">
+                                                    <div>Semua pelanggan terdaftar</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="w-100">
+                                                <div class="subheader">Pelanggan Aktif</div>
+                                                <div class="h2 my-1 text-success">0</div>
+                                                <div class="d-flex">
+                                                    <div>Sedang aktif (0%)</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="w-100">
+                                                <div class="subheader">Total Pendapatan</div>
+                                                <div class="h2 my-1 text-success">Rp 0</div>
+                                                <div class="d-flex">
+                                                    <div>Dari tagihan terbayar</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="w-100">
+                                                <div class="subheader">Tagihan Terbayar</div>
+                                                <div class="h2 my-1 text-info">0</div>
+                                                <div class="d-flex">
+                                                    <div>Berhasil dibayar (0%)</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Charts -->
+                        <div class="row row-deck row-cards mt-4">
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Status Pelanggan</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="chart-customer-status" style="min-height: 350px;">
+                                            <p class="text-muted text-center pt-5">Chart akan ditampilkan di sini</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Status Tagihan</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="chart-invoice-status" style="min-height: 350px;">
+                                            <p class="text-muted text-center pt-5">Chart akan ditampilkan di sini</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customers Section -->
+                    <div id="customers" class="page-section" style="display: none;">
+                        <div class="row row-deck row-cards">
+                            <div class="col-12">
+                                <h1 class="page-title mb-4">Manajemen Pelanggan</h1>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header d-print-none">
+                                        <h3 class="card-title">Daftar Pelanggan</h3>
+                                        <div class="card-options">
+                                            <button class="btn btn-primary btn-sm">Tambah Pelanggan</button>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-vcenter card-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nama</th>
+                                                    <th>Email</th>
+                                                    <th>Status</th>
+                                                    <th>Paket</th>
+                                                    <th class="w-1"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="5" class="text-center text-muted py-4">Tidak ada data
+                                                        pelanggan</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Invoices Section -->
+                    <div id="invoices" class="page-section" style="display: none;">
+                        <div class="row row-deck row-cards">
+                            <div class="col-12">
+                                <h1 class="page-title mb-4">Manajemen Tagihan</h1>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header d-print-none">
+                                        <h3 class="card-title">Daftar Tagihan</h3>
+                                        <div class="card-options">
+                                            <button class="btn btn-primary btn-sm">Buat Tagihan</button>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-vcenter card-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>No. Invoice</th>
+                                                    <th>Pelanggan</th>
+                                                    <th>Jumlah</th>
+                                                    <th>Status</th>
+                                                    <th>Tanggal</th>
+                                                    <th class="w-1"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="6" class="text-center text-muted py-4">Tidak ada data
+                                                        tagihan</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Section -->
+                    <div id="settings" class="page-section" style="display: none;">
+                        <div class="row row-deck row-cards">
+                            <div class="col-12">
+                                <h1 class="page-title mb-4">Pengaturan Sistem</h1>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Pengaturan Umum</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label class="form-label">Nama Perusahaan</label>
+                                            <input type="text" class="form-control" placeholder="Masukkan nama perusahaan">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control"
+                                                placeholder="Masukkan email perusahaan">
+                                        </div>
+                                        <div class="form-footer">
+                                            <button class="btn btn-primary">Simpan Perubahan</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer footer-transparent d-print-none">
+                <div class="container-xl">
+                    <div class="row text-center align-items-center flex-row-reverse">
+                        <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item">
+                                    Copyright &copy; 2025
+                                    <a href="#" class="link-secondary">Billing System</a>. All rights reserved.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- END PAGE WRAPPER -->
+
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.bootstrap5.js"></script>
+
+    <!-- Tabler JS -->
+    <script src="/assets/dist/js/tabler.min.js" defer></script>
+
+    <!-- ApexCharts JS -->
+    <script src="/assets/libs/apexcharts/dist/apexcharts.min.js" defer></script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Leaflet Draw JS -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+
+    <!-- Tom Select JS -->
+    <script src="/assets/libs/tom-select/dist/js/tom-select.base.min.js"></script>
+
+    <!-- Leaflet Routing Machine JS -->
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+    <!-- Leaflet GeoSearch JS -->
+    <script src="https://unpkg.com/leaflet-geosearch@latest/dist/bundle.min.js"></script>
+
+    <!-- Demo JS -->
+    <script src="/assets/preview/js/demo.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation handler
+            const navLinks = document.querySelectorAll('[data-section]');
+            const sections = document.querySelectorAll('.page-section');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+
+                    // Hide all sections
+                    sections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+
+                    // Show selected section
+                    document.getElementById(sectionId).style.display = 'block';
+
+                    // Update active nav item
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Initialize charts if ApexCharts is available
+            if (typeof ApexCharts !== 'undefined') {
+                initializeCharts();
+            }
+        });
+
+        function initializeCharts() {
+            // Customer Status Chart
+            const customerStatusOptions = {
+                series: [0, 0, 0],
+                chart: {
+                    type: 'pie',
+                    height: 350,
+                    foreColor: '#374151'
+                },
+                labels: ['Aktif', 'Tidak Aktif', 'Disuspend'],
+                colors: ['#20c997', '#6c757d', '#fd7e14'],
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }],
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        colors: '#374151'
+                    }
+                }
+            };
+
+            if (document.querySelector('#chart-customer-status')) {
+                const customerStatusChart = new ApexCharts(document.querySelector("#chart-customer-status"),
+                    customerStatusOptions);
+                customerStatusChart.render();
+            }
+
+            // Invoice Status Chart
+            const invoiceStatusOptions = {
+                series: [0, 0, 0],
+                chart: {
+                    type: 'donut',
+                    height: 350,
+                    foreColor: '#374151'
+                },
+                labels: ['Terbayar', 'Belum Dibayar', 'Terlambat'],
+                colors: ['#20c997', '#ffc107', '#dc3545'],
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }],
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        colors: '#374151'
+                    }
+                }
+            };
+
+            if (document.querySelector('#chart-invoice-status')) {
+                const invoiceStatusChart = new ApexCharts(document.querySelector("#chart-invoice-status"),
+                    invoiceStatusOptions);
+                invoiceStatusChart.render();
+            }
+        }
+    </script>
+</body>
+
+</html>

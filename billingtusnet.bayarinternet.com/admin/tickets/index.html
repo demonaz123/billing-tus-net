@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Tickets - Admin</title>
+    <link href="/assets/dist/css/tabler.css?v1762496404" rel="stylesheet" />
+    <link href="/assets/custom.css?v1762496404" rel="stylesheet" />
+    <link href="/assets/preview/css/demo.min.css?v1762496404" rel="stylesheet" />
+    <style>@import url("https://rsms.me/inter/inter.css");</style>
+</head>
+<body class="layout-fluid">
+    <script src="/assets/dist/js/tabler-theme.min.js?v1762496404"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.bootstrap5.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.5/css/dataTables.bootstrap5.css">
+
+    <div class="page">
+        <header class="navbar navbar-expand-lg sticky-top">
+            <div class="container-fluid mobile">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-mobile">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-brand navbar-brand-autodark pe-0 pe-md-3">
+                    <img src="/uploads/company/logo.png?1762496404" alt="Logo" style="width: auto; max-width: 120px;">
+                </div>
+                <div class="navbar-nav flex-row order-md-last">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link d-flex lh-1 p-0 px-2" data-bs-toggle="dropdown">
+                            <span class="avatar avatar-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path></svg></span>
+                            <div class="d-none d-xl-block ps-2"><div>TUS NETWORK</div></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <aside class="navbar navbar-vertical navbar-expand-lg d-none d-lg-flex" style="min-height: 100vh;">
+            <div class="container-fluid d-flex flex-column h-100">
+                <div class="navbar-brand navbar-brand-autodark d-none d-lg-block pt-4 px-4">
+                    <a href="/admin/dashboard" class="text-teal d-flex align-items-center">
+                        <img src="/uploads/company/logo.png?1762496404" alt="Logo" id="navbar-logo"
+                            style="width: auto; height: auto; max-width: 150px; max-height: 60px; min-width: 80px; min-height: 30px; object-fit: contain;">
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="sidebar-menu">
+                    <ul class="navbar-nav pt-lg-3 d-flex flex-column h-100">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex justify-content-between align-items-center gap-2" href="/admin/dashboard">
+                                <span class="d-flex align-items-center flex-grow-1">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-home">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                                            <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                                            <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-title">Dashboard</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link d-flex justify-content-between align-items-center gap-2" href="/admin/settings/servers">
+                                <span class="d-flex align-items-center flex-grow-1">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-server-2">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M3 4m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z" />
+                                            <path
+                                                d="M3 12m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z" />
+                                            <path d="M7 8l0 .01" />
+                                            <path d="M7 16l0 .01" />
+                                            <path d="M11 8h6" />
+                                            <path d="M11 16h6" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-title">Mikrotik Server</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link d-flex justify-content-between align-items-center gap-2" href="/admin/settings/servers/products">
+                                <span class="d-flex align-items-center flex-grow-1">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-library">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M7 3m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" />
+                                            <path
+                                                d="M4.012 7.26a2.005 2.005 0 0 0 -1.012 1.737v10c0 1.1 .9 2 2 2h10c.75 0 1.158 -.385 1.5 -1" />
+                                            <path d="M11 7h5" />
+                                            <path d="M11 10h6" />
+                                            <path d="M11 13h3" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-title">Products</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#navbar-distributions" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-map-search">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M11 18l-2 -1l-6 3v-13l6 -3l6 3l6 -3v7.5" />
+                                        <path d="M9 4v13" />
+                                        <path d="M15 7v5" />
+                                        <path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                        <path d="M20.2 20.2l1.8 1.8" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">Distributions</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item" href="/admin/settings/distributions">
+                                            Locations
+                                            <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">ODP/HTB/BTS dll</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#navbar-customers" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-users">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                        <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">Customers</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item" href="/admin/customers">
+                                            Dashboard
+                                        </a>
+                                        <a class="dropdown-item" href="/admin/customers/add">
+                                            Tambah Customer
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link d-flex justify-content-between align-items-center gap-2" href="/admin/maps-new" target='_blank'>
+                                <span class="d-flex align-items-center flex-grow-1">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-map">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M3 3m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                                            <path d="M7.5 3l4.5 3l4.5 -3l4.5 3v12l-4.5 -3l-4.5 3l-4.5 -3z" />
+                                            <path d="M7.5 6v12" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-title">Maps</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link d-flex justify-content-between align-items-center gap-2" href="/admin/invoices">
+                                <span class="d-flex align-items-center flex-grow-1">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-calculator">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M4 3m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                                            <path
+                                                d="M8 7m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z" />
+                                            <path d="M8 14l0 .01" />
+                                            <path d="M12 14l0 .01" />
+                                            <path d="M16 14l0 .01" />
+                                            <path d="M8 17l0 .01" />
+                                            <path d="M12 17l0 .01" />
+                                            <path d="M16 17l0 .01" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-title">Invoices</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link d-flex justify-content-between align-items-center gap-2" href="/admin/tickets">
+                                <span class="d-flex align-items-center flex-grow-1">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-mail">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-16a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                                            <path d="M4 7l8 5l8 -5" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-title">Tickets</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link d-flex justify-content-between align-items-center gap-2" href="/admin/transactions">
+                                <span class="d-flex align-items-center flex-grow-1">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-cash">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M7 15h-3a1 1 0 0 1 -1 -1v-8a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v3" />
+                                            <path
+                                                d="M7 9m0 1a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v8a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1z" />
+                                            <path d="M12 14a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-title">Transactions</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link d-flex justify-content-between align-items-center gap-2" href="/admin/customer-notifications">
+                                <span class="d-flex align-items-center flex-grow-1">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-bell-ringing">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
+                                            <path d="M9 17v-6a3 3 0 0 1 .879 -2h4.242a3 3 0 0 1 .879 2v6l3 3h-12z" />
+                                            <path d="M13.73 21a2 2 0 0 1 -3.46 0" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-title">Notifications</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <!-- Spacer -->
+                        <li class="nav-item flex-fill"></li>
+
+                        <!-- Changelog -->
+                        <li class="nav-item">
+                            <a class="nav-link d-flex justify-content-between align-items-center gap-2" href="/admin/changelog">
+                                <span class="d-flex align-items-center flex-grow-1">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-notebook">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M6 4h11a2 2 0 0 1 2 2v12l-5 -3l-5 3v-12a2 2 0 0 1 2 -2z" />
+                                            <path d="M12 6.5l0 11.5" />
+                                            <path d="M12 6.5l0 6l2.5 -1.5" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-title">Changelog</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <!-- Settings -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#navbar-settings" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-settings-code">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path
+                                            d="M11.482 20.924a1.666 1.666 0 0 1 -1.157 -1.241a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.312 .318 1.644 1.794 .995 2.697" />
+                                        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                                        <path d="M20 21l2 -2l-2 -2" />
+                                        <path d="M17 17l-2 2l2 2" />
+                                    </svg>
+                                </span>
+                                <span class="nav-link-title">Settings</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-menu-columns">
+                                    <div class="dropdown-menu-column">
+                                        <a class="dropdown-item" href="/admin/settings/general">General</a>
+                                        <a class="dropdown-item" href="/admin/settings/landing-page">Landing Page</a>
+                                        <a class="dropdown-item" href="/admin/settings/payment">
+                                            Payment
+                                            <span class="badge badge-sm bg-teal-lt text-uppercase ms-auto">Gateway</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/admin/settings/users">Users Management</a>
+                                        <a class="dropdown-item" href="/admin/settings/whatsapp-gateways">
+                                            WhatsApp Gateway
+                                            <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
+                                        </a>
+                                        <a class="dropdown-item" href="/admin/settings/automation">
+                                            Automation
+                                            <span class="badge badge-sm bg-teal-lt text-uppercase ms-auto">Scheduler</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link d-flex justify-content-between align-items-center gap-2" href="/admin/failed-automations">
+                                <span class="d-flex align-items-center flex-grow-1">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-alert-triangle">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M12 9v4" />
+                                            <path
+                                                d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
+                                            <path d="M12 16h.01" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-title">Failed Automation ( 0 )</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link d-flex justify-content-between align-items-center gap-2" href="https://docs.bayarinternet.com" target='_blank'>
+                                <span class="d-flex align-items-center flex-grow-1">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" class="icon icon-tabler icon-tabler-file-text">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                            <path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z" />
+                                            <line x1="9" y1="13" x2="15" y2="13" />
+                                            <line x1="9" y1="17" x2="13" y2="17" />
+                                        </svg>
+                                    </span>
+                                    <span class="nav-link-title">Dokumentasi</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <div class="page-wrapper">
+            <div class="page-body">
+                <div class="container-xl">
+                    <div class="page-header d-print-none mb-3">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h2 class="page-title d-flex align-items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                                    Support Tickets
+                                </h2>
+                            </div>
+                            <div class="col-auto ms-auto">
+                                <a href="#" class="btn btn-primary">+ Buat Ticket</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-cards mb-3">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="card card-sm">
+                                <div class="card-body">
+                                    <div class="text-muted text-sm font-semibold">Total Tickets</div>
+                                    <div class="mt-3 d-flex align-items-baseline">
+                                        <div class="h3 mb-0">287</div>
+                                        <span class="ms-2 text-muted text-sm">All Time</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="card card-sm">
+                                <div class="card-body">
+                                    <div class="text-muted text-sm font-semibold">Open</div>
+                                    <div class="mt-3 d-flex align-items-baseline">
+                                        <div class="h3 mb-0">23</div>
+                                        <span class="ms-2 text-yellow text-sm">⚠ Action</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="card card-sm">
+                                <div class="card-body">
+                                    <div class="text-muted text-sm font-semibold">Resolved</div>
+                                    <div class="mt-3 d-flex align-items-baseline">
+                                        <div class="h3 mb-0">234</div>
+                                        <span class="ms-2 text-green text-sm">81.5%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="card card-sm">
+                                <div class="card-body">
+                                    <div class="text-muted text-sm font-semibold">Avg Response</div>
+                                    <div class="mt-3 d-flex align-items-baseline">
+                                        <div class="h3 mb-0">2.3h</div>
+                                        <span class="ms-2 text-green text-sm">↓ Quick</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-cards mb-3">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Filters</h3>
+                                </div>
+                                <div class="card-body row g-2">
+                                    <div class="col-md-3">
+                                        <select class="form-select" id="statusFilter">
+                                            <option value="">Status</option>
+                                            <option value="open">Open</option>
+                                            <option value="resolved">Resolved</option>
+                                            <option value="closed">Closed</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select class="form-select" id="priorityFilter">
+                                            <option value="">Priority</option>
+                                            <option value="high">High</option>
+                                            <option value="medium">Medium</option>
+                                            <option value="low">Low</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="searchFilter" placeholder="Search subject...">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-secondary w-100" onclick="alert('Reset filters')">Clear Filters</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-cards">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="table-responsive">
+                                    <table class="table table-vcenter card-table" id="ticketsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Ticket ID</th>
+                                                <th>Customer</th>
+                                                <th>Subject</th>
+                                                <th>Priority</th>
+                                                <th>Status</th>
+                                                <th>Created</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>TKT-001</strong></td>
+                                                <td>Budi Santoso</td>
+                                                <td>Koneksi internet lambat</td>
+                                                <td><span class="badge badge-danger">High</span></td>
+                                                <td><span class="badge badge-warning">Open</span></td>
+                                                <td>2025-11-10</td>
+                                                <td><a href="#" class="btn btn-sm btn-ghost-primary">View</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>TKT-002</strong></td>
+                                                <td>Siti Maryam</td>
+                                                <td>Bantuan setup router</td>
+                                                <td><span class="badge badge-info">Medium</span></td>
+                                                <td><span class="badge badge-success">Resolved</span></td>
+                                                <td>2025-11-08</td>
+                                                <td><a href="#" class="btn btn-sm btn-ghost-primary">View</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>TKT-003</strong></td>
+                                                <td>Ahmad Hidayat</td>
+                                                <td>Upgrade paket internet</td>
+                                                <td><span class="badge badge-secondary">Low</span></td>
+                                                <td><span class="badge badge-secondary">Closed</span></td>
+                                                <td>2025-11-05</td>
+                                                <td><a href="#" class="btn btn-sm btn-ghost-primary">View</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer footer-transparent d-print-none">
+                <div class="container-xl">
+                    <div class="row text-center">
+                        <div class="col-12"><ul class="list-inline list-inline-dots mb-0"><li class="list-inline-item">Copyright &copy; 2025 <a href="#" class="link-secondary">Bayar Internet</a>.</li></ul></div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="/assets/dist/js/tabler.min.js?"></script>
+    <script src="/assets/preview/js/demo.min.js?"></script>
+    <script>
+        $(document).ready(function() { $('#ticketsTable').DataTable({"pageLength": 10}); });
+        $(document).on('click', 'a[href]', function(e) {
+            const href = $(this).attr('href');
+            if (!href || href.startsWith('#') || href.startsWith('javascript') || $(this).attr('target') === '_blank') return;
+            e.preventDefault();
+            setTimeout(() => { window.location.href = href; }, 100);
+        });
+    </script>
+</body>
+</html>
